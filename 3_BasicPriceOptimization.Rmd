@@ -1,0 +1,100 @@
+---
+title: "Chapter 3: Basic Price Optimization"
+output: html_notebook
+---
+
+A fundamental input into any PRO analysis is the price-response function, $d(p)$. 
+
+*  Difference: The price-response function specifies demand for the product of a single seller as a function of the price offered by that seller. 
+
+###Properties of $d(p)$
+
+* *Nonnegative*: all prices are greater than or equal to 0, $p \geq 0$
+* *Continuous*: there are no "gaps" or "jups" in the parket response to our prices 
+* *Differentiable*: $d(p)$ is smooth, with a well-defined slope at every point. 
+* *Downward sloping*: $d(p)$ is downward sloping whenever $d(p) > 0$, does not mean high prices will always be associated with low demand.  but it does indicate that in any time period, demand would have been lower if prices had been higher. 
+
+### Cases: Price is not downward sloping whenever $d(p) > 0$
+
+* **Giffen goods:** Demand rises as their price rises because of substitute effects. (in.e. 8.00 budget, hamburgers are 1.00 and steak 2.00. Will buy hamburgers 6 days, steak 1 day. If the price rises to 1.10, consumer will buy 7 hamburgers each week to keep within his budget)
+
+* **price as an indicator of quality:** In some markets, price is used by some consumers as an indicator of quality. Wine is a classic example: Faced with a duanting array of labels and varietals, many purchasers are likely to use a rule such as: a 10.00 bottle for dinner with family, a 15.00 bottle if the couple next door is dropping by, and a 25.00 bottle if our wine-snob friends are joining us for dinner
+
+* **Conspicuous consumption**: the sitiuation in which a consumer maks a purchase decision in order to advertise his ability to spend large amounts. 
+
+### Price Sensitivity 
+
+#### Slope 
+
+the slope of $d(p)$ measures how deamnd changes in response to a price change. 
+
+$$
+\delta(p_2,p_1)=[d(p_2)-d(p_1)]/(p_2-p_1) 
+$$
+
+* $\delta(p_2,p_1)$ will always be less than or equal to zero.  
+
+It is common to specify the slope at a single price, say $p_1$ , in which case it can be computed as the limit 
+$$
+\delta(p_1)=\lim_{h\to 0}[d(p_1+h)-d(p_1)]/h
+$$
+
+The slope can be used as a local estimator of the change in demand that would result in a small change in price. For small change in price
+$$
+d(p_2)-d(p_1)\approx\delta(P_1)(p_2-p_1)
+$$
+
+
+**Example** The price of a bulk chemical can be quoted in either cens per pound or dollars per ton. Assume that the demand for the chemical is 50,000 pounds at 10 cents per pound but drops to 40,000 poiunds at 11 cents per pound. The slope of the price response function at these two points are:
+
+```{r}
+# Generate Price Slop function for elastic pricing optimization
+PriceSlope <- function (p1, p2, d1, d2)
+{
+  (d1-d2)/(p1-p2)
+}
+
+PriceSlope(10,11,50000,40000)
+```
+
+
+#### Price Elasticity 
+Defined as the ratio of the percentage change in demand to the percentage change in price. 
+
+* An elasticity of 1.2 means that a 10% increase in price would result in a 12% decrease in demand and an elasticity of 0.8 means that a 10% decrease in price would result in an 8% increase in demand. 
+
+$$
+\epsilon(p_1,p_2)=\frac{100{[d(p_2)-d(p_1)/d(p_1)]}}{100\{(p_2-p_1)/p_1\}}
+$$
+The numerator in the above equation is the percentage change in demand and the denominator is the percentage change in price. Thus reducing terms will bring reduce to the following.
+$$
+\epsilon(p_1,p_2)=-\frac{[d(p_2)-d(p_1)]p_1}{[p_2-p_1]d(p_1)}
+$$
+
+* Due to downward-sloping property guarantees that demand always changes in the opposite direction from price. 
+* $\epsilon(p_1,p_2)$ also called arc elasticity
+* Requires two prices to calculate reflects that the percentage change in demand results from changing prices will depend on both the old and new price. 
+* We can derive a point elasticity at p by taking the limit 
+
+$$
+\epsilon(p_1)=-d'(p_1)p_1/d(p_1)
+$$
+
+* Elasticity, unlike slope, its value is independent of the units being used. 
+
+```{r}
+PriceElasticity <- function(p1,p2,d1,d2)
+{
+  -((d2-d1)*p1)/((p2-p1)*d1)
+}
+
+PriceElasticity(0.13,0.15,10000,7750)
+```
+
+* Local property 
+* Price Elasticity is often synonomous to price Sensitivity 
+* Often, a good with a price elasticity greater than 1 is described as elastic, while one with an elasticity less than 1 is described as inelastic.
+* Elasticity depends on the time period under consideration 
+    * For most products, short run elasticity is lower than long run elasticity. 
+##### Another sign
+
