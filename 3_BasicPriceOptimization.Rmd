@@ -48,7 +48,7 @@ $$
 **Example** The price of a bulk chemical can be quoted in either cens per pound or dollars per ton. Assume that the demand for the chemical is 50,000 pounds at 10 cents per pound but drops to 40,000 poiunds at 11 cents per pound. The slope of the price response function at these two points are:
 
 ```{r}
-# Generate Price Slop function for elastic pricing optimization
+# Generate Price Slope function for elastic pricing optimization
 PriceSlope <- function (p1, p2, d1, d2)
 {
   (d1-d2)/(p1-p2)
@@ -96,5 +96,25 @@ PriceElasticity(0.13,0.15,10000,7750)
 * Often, a good with a price elasticity greater than 1 is described as elastic, while one with an elasticity less than 1 is described as inelastic.
 * Elasticity depends on the time period under consideration 
     * For most products, short run elasticity is lower than long run elasticity. 
-##### Another sign
+    
+### Price Response and Willingness To Pay (w.t.p.)
 
+#### Function Declaration
+Define the function $w(x)$ as the w.t.p. distribution across the population. Then, for any values $0\leq p_1 < p_2$:
+
+$\int_{p_1}^{p_2}w(x)dx$ = fraction of the population that has w.t.p. between $p_1$ and $p_2$
+
+* $0\leq w(x)\leq 1$ for all nonnegative values of x 
+
+We can derive $D(p)$ from the w.t.p. distribution from 
+$$
+d(p)=\int_{p}^{\infty}w(x)dx
+$$
+We can take the derivative of the corresponding price-response function to optain
+$$
+d'(p)=-Dw(p)
+$$
+Which is nonpositive, as required by the downward-sloping demand curve property. Conversely, we can derive the willingness to pay distribution from the price-resonse function using 
+$$
+w(x)=-d'(x)/d(0)
+$$
