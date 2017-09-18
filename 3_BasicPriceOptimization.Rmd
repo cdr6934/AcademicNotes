@@ -118,3 +118,4 @@ Which is nonpositive, as required by the downward-sloping demand curve property.
 $$
 w(x)=-d'(x)/d(0)
 $$
+A uniform willingness-to-pay distribution corresponds to a linear price-response function, and visa versa. 
