@@ -1,5 +1,5 @@
 ---
-title: "Basic Price Optimization"
+title: "Chapter 3: Basic Price Optimization"
 output: html_notebook
 ---
 
@@ -10,6 +10,9 @@ library(tidyverse)
 
 ### 3.1.2 Measures of Price Sensitivity 
 
+
+#### Slope
+The _slope_ of the price0response function measures how depand changes in response to a price change.
 
 
 

@@ -1,0 +1,5 @@
+---
+title: "Chapter 2: Introduction to Pricing and Revenue Optimization"
+output: html_notebook
+---
+
